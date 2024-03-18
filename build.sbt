@@ -7,7 +7,9 @@ lazy val root = Project(id = "functional-patterns", base = file("."))
   )
   .aggregate(json, codecs, parsecs, gen)
 
-lazy val json    = project.dependsOn(parsecs)
+lazy val json    = project
 lazy val codecs  = project.dependsOn(json)
-lazy val parsecs = project
+lazy val parsecs = project.dependsOn(json)
 lazy val gen     = project
+
+logLevel := Level.Error
